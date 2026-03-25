@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables (очень важно)
+.env
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Build / cache
+.pytest_cache/
+.mypy_cache/
+
+# Result files (твои парсенные данные)
+result.json
+*.json
+
+# SQLite (если добавишь БД)
+*.sqlite3
+
+# Coverage
+.coverage
+htmlcov/
