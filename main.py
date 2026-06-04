@@ -1,10 +1,7 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from parser import parser
-import logging
 
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+from api.buildings import router as buildings_router
 
 app = FastAPI(title="Buildings API")
 
@@ -16,24 +13,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/get-data")
-def get_data():
-    try:
-        data = parser()
-        return data
-    except Exception as e:
-        logger.exception("Failed to get data")
-        raise HTTPException(status_code=500, detail="Failed to get data") from e
-
-@app.post("/parse")
-def run_parser():
-    try:
-        parser()
-        return {"status": "success"}
-    except Exception as e:
-        logger.exception("Failed to parse data")
-        raise HTTPException(status_code=500, detail="Failed to parse data") from e
-    
+app.include_router(buildings_router)
 
     # добавить тесты времени и через асинхронность 
     # app.diagrams.net
